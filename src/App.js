@@ -1,4 +1,36 @@
 import "./App.css";
+const skills = [
+  {
+    skill: "HTML+CSS",
+    level: "advanced",
+    backgroundColor: "blue",
+  },
+  {
+    skill: "JavaScript",
+    level: "advanced",
+    backgroundColor: "yellow",
+  },
+  {
+    skill: "Web Design",
+    level: "advanced",
+    backgroundColor: "grey",
+  },
+  {
+    skill: "Git and GitHub",
+    level: "intermediate",
+    backgroundColor: "orange",
+  },
+  {
+    skill: "React",
+    level: "advanced",
+    backgroundColor: "cyan",
+  },
+  {
+    skill: "Svelte",
+    level: "beginner",
+    backgroundColor: "red",
+  },
+];
 
 function App() {
   return (
@@ -28,67 +60,33 @@ function Data() {
 }
 
 function Skill() {
-  const skills = [
-    {
-      skill: "HTML+CSS",
-      backgroundColor: "blue",
-      emoji: "💪",
-      emoji_label: "strong",
-    },
-    {
-      skill: "JavaScript",
-      backgroundColor: "yellow",
-      emoji: "💪",
-      emoji_label: "thumbs-up",
-    },
-    {
-      skill: "Web Design",
-      backgroundColor: "grey",
-      emoji: "💪",
-      emoji_label: "strong",
-    },
-    {
-      skill: "Git and GitHub",
-      backgroundColor: "orange",
-      emoji: "👍",
-      emoji_label: "thumbs-up",
-    },
-    {
-      skill: "React",
-      backgroundColor: "cyan",
-      emoji: "💪",
-      emoji_label: "strong",
-    },
-    {
-      skill: "Svelte",
-      backgroundColor: "red",
-      emoji: "👶",
-      emoji_label: "baby",
-    },
-  ];
+  const skillCount = skills.length;
   return (
-    <div className="skill-list">
-      {skills.map((skill, index) => (
-        <SkillList
-          key={index}
-          skill={skill.skill}
-          backgroundColor={skill.backgroundColor}
-          emoji={skill.emoji}
-          emoji_label={Skill.emoji_label}
-        />
-      ))}
-    </div>
+    <>
+      {skillCount > 0 ? (
+        <div className="skill-list">
+          {skills.map((skill) => (
+            <SkillList
+              skill={skill.skill}
+              color={skill.backgroundColor}
+              level={skill.level}
+            />
+          ))}
+        </div>
+      ) : (
+        <p>There's no current skills as of now</p>
+      )}
+    </>
   );
 }
 
-function SkillList(props) {
-  console.log(props);
+function SkillList({ skill, color, level }) {
   return (
-    <div className="skill-list">
-      <h3 style={{ background: props.backgroundColor }}>
-        {props.skill}
-        <span aria-label={props.emoji_label}>{props.emoji}</span>
-      </h3>
+    <div className="skill" style={{ background: color }}>
+      <span>{skill}</span>
+      <span>
+        {level === "advanced" ? "💪" : level === "intermediate" ? "👍" : "👶"}
+      </span>
     </div>
   );
 }
